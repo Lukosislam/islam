@@ -1,0 +1,208 @@
+* {
+    padding: 0 auto;
+    margin: 0 auto;
+}
+body{
+  font-family: 'Poppins',' sans-serif';
+  font-weight: 400;
+  color: #fff;
+  font-size: 16px;
+  background: linear-gradient(180deg,rgba(0,0,0,1) 0%, rgba(26,14,1,1) 100% );
+}
+
+a {
+    text-decoration: none;
+}
+.img {
+    max-width: 100%;
+    background: black;
+}
+.wrapper{
+    background: linear-gradient(180deg,rgba(0,0,0,1) 0%, rgba(26,14,1,1) 100% );
+    width: 100%;
+}
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+header{
+    padding: 50px 0;
+}
+header .logo{
+    text-transform: uppercase;
+    font-size: 29px;
+    font-weight: 800;
+    color: #c7be91;
+}
+header nav{
+    float: right;
+    width: 50%;
+}
+header nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    color: #020e78;
+}
+header nav ul li{
+    display: inline-block;
+}
+header nav ul li a{ 
+    color: #fff;
+}
+header nav ul li.active::after{
+    content: '';
+    display: block;
+    width: 40px;
+    height: 5px;
+    background: #020e78;
+    border-radius: 10px;
+}
+header nav ul li:not(.active):not(.btn) a:hover{
+    border-bottom: 5px solid blue;
+}
+header nav ul li.btn a{
+    background: #3542b9;
+    padding: 9px 17px;
+    border-radius: 5px;
+    transition: all 500ms ease;
+}
+header nav ul li.btn a:hover{
+    background: blue;
+}
+.hero{
+    position: relative;
+}
+.hero-contaner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.hero--info{
+    width: 50%;
+}
+.hero--info h2{
+    color: #0516ab;
+    font-size: 20px;
+    font-weight: 600;
+}
+.hero--info h1{
+    color: #0516ab;
+    font-size: 50px;
+    font-weight: 600;
+}
+.hero--info p {
+    font-weight: 500;
+    color: #0516ab;
+
+}
+.hero--info .btn{
+    background: #020e78;
+    color: #fff;
+    border-radius: 60px;
+    padding: 15px 50px;
+    border: 0;
+    transition: all 500ms ease;
+    
+}
+.hero--info .btn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.hero img{
+    top: 50px;
+    right: 90px;
+    height: 400px;
+}
+@media screen and (min-width:1024px) {
+    .menu {
+        display: none;
+    }
+}
+@media screen and (max-width:1023px) {
+    header {
+        display: none;
+    }
+    .burger-checkbox {
+        position: absolute;
+        visibility: hidden;
+      }
+      .burger {
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        display: block;
+        position: relative;
+        border: none;
+        background: transparent;
+        width: 40px;
+        height: 26px;
+      }
+      .burger::before,
+      .burger::after {
+        content: '';
+        left: 0;
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 4px;
+        border-radius: 10px;
+        background: #ffffff;
+      }
+      .burger::before {
+        top: 0;
+        box-shadow: 0 11px 0 #ffffff;
+        transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
+      }
+      .burger::after {
+        bottom: 0;
+        transition: bottom .3s .15s, transform .3s;
+      }
+      .burger-checkbox:checked + .burger::before {
+        top: 11px;
+        transform: rotate(45deg);
+        box-shadow: 0 6px 0 rgba(0,0,0,0);
+        transition: box-shadow .15s, top .3s, transform .3s .15s;
+      }
+      .burger-checkbox:checked + .burger::after {
+        bottom: 11px;
+        transform: rotate(-45deg);
+        transition: bottom .3s, transform .3s .15s;
+      }
+      .menu-list {
+        top: 0;
+        left: 0;
+        position: absolute;
+        display: grid;
+        gap: 12px;
+        padding: 42px 0;
+        margin: 0;
+        background: rgb(40, 40, 40);
+        list-style-type: none;
+        transform: translateX(-100%);
+        transition: .3s;
+        width: 200px;
+        border-radius: 7%;
+      }
+      .menu-item {
+        display: block;
+        padding: 8px;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+      }
+      .menu-item:hover {
+        background: rgba(255,255,255,.2)
+      }
+      .burger-checkbox:checked ~ .menu-list {
+        transform: translateX(0);
+      } 
+      .menu {
+        margin: 3%;
+    }
+}
+
+
+
+

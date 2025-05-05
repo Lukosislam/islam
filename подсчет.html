@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="constrruction.css">
+    </head>
+  <title>Рассчитать стоимость окон</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label, select, button {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .result-section {
+      margin-top: 20px;
+    }
+    .result-section p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .result-section img {
+      max-width: 200px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="typeHousing">Выберите тип жилья:</label>
+    <select id="typeHousing">
+      <option>Квартира</option>
+      <option>Частный дом</option>
+      <option>Офис</option>
+      <option>Магазин</option>
+      <option>Склад</option>
+    </select>
+
+    <label for="typeWindow">Выберите тип окон:</label>
+    <select id="typeWindow">
+      <option>Алюминиевые окна</option>
+      <option>Пластиковые окна</option>
+    </select>
+
+    <label for="sashes">Введите количество створок:</label>
+    <select id="sashes">
+      <option>Одна створка</option>
+      <option>Две створки</option>
+      <option>Три створки</option>
+      <option>Четыре створки</option>
+    </select>
+
+    <label for="color">Выберите цвет окон:</label>
+    <select id="color">
+      <option>Белый</option>
+      <option>Коричневый</option>
+      <option>Серый</option>
+      <option>Черный</option>
+    </select>
+    <button onclick="calculate()">Рассчитать стоимость</button>
+  </div>
+
+  <!-- Здесь будет отображаться результат расчета и картинки -->
+  <div id="result" class="result-section"></div>
+
+  <script>
+    function calculate() {
+      // Получаем выбранные значения
+      var typeHousing = document.getElementById("typeHousing").value;
+      var typeWindow = document.getElementById("typeWindow").value;
+      var sashesText = document.getElementById("sashes").value;
+      var color = document.getElementById("color").value;
+
+      // Задаем базовую стоимость для выбранного типа окон
+      var basePrice = 0;
+      if (typeWindow === "Алюминиевые окна") {
+        basePrice = 55000;
+      } else if (typeWindow === "Пластиковые окна") {
+        basePrice = 44000;
+      }
+
+      // Определяем коэффициент для типа жилья
+      var housingMultiplier = 1;
+      switch (typeHousing) {
+        case "Квартира":
+          housingMultiplier = 1;
+          break;
+        case "Частный дом":
+          housingMultiplier = 1.2;
+          break;
+        case "Офис":
+          housingMultiplier = 1.3;
+          break;
+        case "Магазин":
+          housingMultiplier = 1.4;
+          break;
+        case "Склад":
+          housingMultiplier = 1.1;
+          break;
+      }
+
+      // Преобразуем выбранный вариант в количество створок
+      var sashesCount = 1;
+      if (sashesText.indexOf("Одна") !== -1) {
+        sashesCount = 4;
+      } else if (sashesText.indexOf("Две") !== -1) {
+        sashesCount = 6;
+      } else if (sashesText.indexOf("Три") !== -1) {
+        sashesCount = 8;
+      } else if (sashesText.indexOf("Четыре") !== -1) {
+        sashesCount = 10;
+      }
+
+      // Рассчитываем итоговую стоимость
+      var totalCost = basePrice * sashesCount * housingMultiplier;
+
+      // Находим элемент для вывода результата и очищаем предыдущие данные
+      var resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      // Создаем элемент с итоговой стоимостью
+      var costResult = document.createElement("p");
+      costResult.textContent = "Итоговая стоимость: " + totalCost.toFixed(2) + " тенге.";
+      resultDiv.appendChild(costResult);
+
+      // Формируем изображения в зависимости от выбранных опций
+      // Для демонстрации применяются картинки-заглушки с помощью сервиса Placeholder
+      
+      // Изображение для типа жилья
+      var imgHousing = document.createElement("img");
+      var housingImgSrc = "";
+      switch (typeHousing) {
+        case "Квартира":
+          housingImgSrc = "https://procity.com.pe/wp-content/uploads/2020/02/02_la_importancia_de_ventilar_nuestro_hogar-650x650.jpg" ;
+          break;
+        case "Частный дом":
+          housingImgSrc = "https://tse4.mm.bing.net/th/id/OIP.JFogCVxKISUQ5Xb1qiM42gHaJ2?cb=iwp1&w=1001&h=1331&rs=1&pid=ImgDetMain";
+          break;
+        case "Офис":
+          housingImgSrc = "https://tse4.mm.bing.net/th/id/OIP.JFogCVxKISUQ5Xb1qiM42gHaJ2?cb=iwp1&w=1001&h=1331&rs=1&pid=ImgDetMain";
+          break;
+        case "Магазин":
+          housingImgSrc = "https://tse4.mm.bing.net/th/id/OIP.JFogCVxKISUQ5Xb1qiM42gHaJ2?cb=iwp1&w=1001&h=1331&rs=1&pid=ImgDetMain";
+          break;
+        case "Склад":
+          housingImgSrc = "https://tse4.mm.bing.net/th/id/OIP.JFogCVxKISUQ5Xb1qiM42gHaJ2?cb=iwp1&w=1001&h=1331&rs=1&pid=ImgDetMain";
+          break;
+        default:
+          housingImgSrc = "https://tse4.mm.bing.net/th/id/OIP.JFogCVxKISUQ5Xb1qiM42gHaJ2?cb=iwp1&w=1001&h=1331&rs=1&pid=ImgDetMain";
+      }
+      imgHousing.src = housingImgSrc;
+
+      // Изображение для типа окон
+      var imgWindow = document.createElement("img");
+      var windowImgSrc = "";
+      if (typeWindow === "Алюминиевые окна") {
+        windowImgSrc = "https://images.cdn-cian.ru/images/kvartira-moskva-4ya-grazhdanskaya-ulica-2113335492-1.jpg";
+      } else if (typeWindow === "Пластиковые окна") {
+        windowImgSrc = "https://realt.by/typo3temp/pics/67/80/6780e1632b55bfb7458b2d9184c78ca0.jpg" ;
+      } else {
+        windowImgSrc = "https://via.placeholder.com/200x150";
+      }
+      imgWindow.src = windowImgSrc;
+
+      // Добавляем изображения на страницу
+      resultDiv.appendChild(imgHousing);
+      resultDiv.appendChild(imgWindow);
+    }
+  </script>
+</body>
+</html>
